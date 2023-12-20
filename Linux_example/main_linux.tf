@@ -25,11 +25,12 @@ module "jonamiki-linux-vm" {
   instances     = local.vmCount        # Here we reference the vmCount variable listed above
   vmname       = "linux-vm-"
   vmnameformat  = "%03d"               # %02 gives "VM-Name-01",  %03 gives "VM-Name-001", ...
+  # In the network section, enter the vSwitch or vDS port group to use + IP addresses or "" for DHCP
   network = {
-    # "workload-network" = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""] # To use DHCP create Empty list ["",""]; You can also use a CIDR annotation;
-    "vDS-VL701" = ["10.70.1.201", "10.70.1.202", "10.70.1.203", "10.70.1.204", "10.70.1.205", "10.70.1.206", "10.70.1.207", "10.70.1.208", "10.70.1.209", "10.70.1.210"] # To use DHCP create Empty list ["",""]; You can also use a CIDR annotation;
-    #"vDS-VL701" = ["", "", "", "", "", "", "", "", "", ""] # To use DHCP create Empty list ["",""]; You can also use a CIDR annotation;
-    # "vDS-VL703" = ["10.70.3.201", "10.70.3.202", "10.70.3.203"]
+    # DHCP: Use empty list ""
+    # "workload-network" = ["", "", "", "", "", "", "", "", "", ""]
+    # Fixed IP:
+    "vDS-VL701" = ["10.70.1.201", "10.70.1.202", "10.70.1.203", "10.70.1.204", "10.70.1.205", "10.70.1.206", "10.70.1.207", "10.70.1.208", "10.70.1.209", "10.70.1.210"]
   }
   # If fixed IP is used, uncomment ipv4submask, vmgateway and dns_server_list below:
   ipv4submask       = ["24"]
